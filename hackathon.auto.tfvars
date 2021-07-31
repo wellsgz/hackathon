@@ -1,1 +1,1 @@
-example_app_name = "hello-app"
+example_app_name = "hello-world-wells-app"
