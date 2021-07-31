@@ -1,4 +1,4 @@
-resource "heroku_app" "example" {
-  name   = "hello-app"
-  region = "us"
+variable "example_app_name" {
+  type = "string"
+  default = "hellp-app"
 }
