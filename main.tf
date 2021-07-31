@@ -6,3 +6,6 @@ terraform {
     }
   }
 }
+variable "example_app_name" {
+  description = "Name of the Heroku app provisioned as an example"
+}
