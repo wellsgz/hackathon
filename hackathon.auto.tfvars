@@ -1,4 +1,1 @@
-variable "example_app_name" {
-  type = "string"
-  default = "hellp-app"
-}
+example_app_name = "Hello-app"
