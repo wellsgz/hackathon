@@ -8,13 +8,13 @@
             ],
             "leaf_profile": "leaf-104-profile-fpr-vmmdomain",
             "lldp_status": "first_app_lldp_enable",
-            "name": "leaf_access_port_104_1_9_vmmdomain",
+            "name": "leaf_access_port_104_1_13_vmmdomain",
             "ports": [
                 {
                     "from_card": "1",
-                    "from_port": "9",
+                    "from_port": "13",
                     "to_card": "1",
-                    "to_port": "9"
+                    "to_port": "13"
                 }
             ]
         }
