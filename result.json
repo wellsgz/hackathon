@@ -1,20 +1,20 @@
 {
     "access_port_group_policy": {
         "leaf_access_port_101_1_19_phydomain": {
-            "aaep_name": "aaep_first_app_fpr_vmmdomain",
-            "cdp_status": "first_app_cdp_enable",
+            "aaep_name": "aaep_first_app_fpr_phydomain",
+            "cdp_status": "first_app_cdp_disable",
             "leaf_block": [
-                104
+                101
             ],
-            "leaf_profile": "leaf-104-profile-fpr-vmmdomain",
-            "lldp_status": "first_app_lldp_enable",
-            "name": "leaf_access_port_104_1_48_vmmdomain",
+            "leaf_profile": "leaf-101-profile-fpr-phydomain",
+            "lldp_status": "first_app_lldp_disable",
+            "name": "leaf_access_port_101_1_40_phydomain",
             "ports": [
                 {
                     "from_card": "1",
-                    "from_port": "48",
+                    "from_port": "40",
                     "to_card": "1",
-                    "to_port": "48"
+                    "to_port": "40"
                 }
             ]
         }
