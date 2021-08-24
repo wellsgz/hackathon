@@ -1,20 +1,20 @@
 {
     "access_port_group_policy": {
         "leaf_access_port_101_1_19_phydomain": {
-            "aaep_name": "aaep_first_app_fpr_phydomain",
-            "cdp_status": "first_app_cdp_disable",
+            "aaep_name": "aaep_first_app_fpr_vmmdomain",
+            "cdp_status": "first_app_cdp_enable",
             "leaf_block": [
-                103
+                104
             ],
-            "leaf_profile": "leaf-103-profile-fpr-phydomain",
+            "leaf_profile": "leaf-104-profile-fpr-vmmdomain",
             "lldp_status": "first_app_lldp_enable",
-            "name": "leaf_access_port_103_1_43_phydomain",
+            "name": "leaf_access_port_104_1_48_vmmdomain",
             "ports": [
                 {
                     "from_card": "1",
-                    "from_port": "43",
+                    "from_port": "48",
                     "to_card": "1",
-                    "to_port": "43"
+                    "to_port": "48"
                 }
             ]
         }
@@ -31,6 +31,7 @@
     "epgs": {},
     "ext_epg": {},
     "filters": {},
+    "fmc_user": {},
     "l3domain": {},
     "l3outs": {},
     "lacp": {
@@ -74,11 +75,23 @@
         "username": "administrator@vsphere.local"
     },
     "vlan_pool": {
+        "first_app_bare_metal_vlan_pool": {
+            "alloc_mode": "dynamic",
+            "from": "vlan-2901",
+            "name": "first_app_bare_metal_vlan_pool",
+            "to": "vlan-3000"
+        },
         "first_app_fpr_phy_vlan_pool": {
             "alloc_mode": "static",
             "from": "vlan-2201",
             "name": "first_app_fpr_phy_vlan_pool",
             "to": "vlan-2202"
+        },
+        "first_app_vlan_pool_1": {
+            "alloc_mode": "dynamic",
+            "from": "vlan-2701",
+            "name": "first_app_vlan_pool_1",
+            "to": "vlan-2800"
         }
     },
     "vmm_vmware": {},
