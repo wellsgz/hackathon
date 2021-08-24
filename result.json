@@ -1,14 +1,14 @@
 {
     "access_port_group_policy": {
         "leaf_access_port_101_1_19_phydomain": {
-            "aaep_name": "aaep_first_app_fpr_vmmdomain",
+            "aaep_name": "aaep_first_app_fpr_phydomain",
             "cdp_status": "first_app_cdp_enable",
             "leaf_block": [
                 104
             ],
-            "leaf_profile": "leaf-104-profile-fpr-vmmdomain",
+            "leaf_profile": "leaf-104-profile-fpr-phydomain",
             "lldp_status": "first_app_lldp_enable",
-            "name": "leaf_access_port_104_1_48_vmmdomain",
+            "name": "leaf_access_port_104_1_48_phydomain",
             "ports": [
                 {
                     "from_card": "1",
@@ -24,14 +24,212 @@
         "url": "https://10.74.202.71",
         "username": "admin"
     },
-    "anps": {},
-    "bds": {},
-    "cdp": {},
-    "contracts": {},
-    "epgs": {},
+    "anps": {
+        "first_app_ap": {
+            "display_name": "first_app_ap",
+            "name": "first_app_ap"
+        }
+    },
+    "bds": {
+        "app_bd": {
+            "display_name": "app_bd",
+            "name": "app_bd",
+            "subnets": [
+                "192.168.20.254/24"
+            ],
+            "sync_fmc_object": true,
+            "vrf_name": "first_app_vrf"
+        },
+        "database_bd": {
+            "display_name": "database_bd",
+            "name": "database_bd",
+            "subnets": [
+                "192.168.21.254/24"
+            ],
+            "sync_fmc_object": true,
+            "vrf_name": "first_app_vrf"
+        },
+        "fpr_inside_bd": {
+            "display_name": "fpr_inside_bd",
+            "name": "fpr_inside_bd",
+            "subnets": [
+                "10.10.10.1/24"
+            ],
+            "sync_fmc_object": false,
+            "vrf_name": "first_app_vrf"
+        },
+        "fpr_outside_bd": {
+            "display_name": "fpr_outside_bd",
+            "name": "fpr_outside_bd",
+            "subnets": [
+                "20.20.20.1/24"
+            ],
+            "sync_fmc_object": false,
+            "vrf_name": "first_app_vrf"
+        },
+        "web_bd": {
+            "display_name": "web_bd",
+            "name": "web_bd",
+            "subnets": [
+                "192.168.10.254/24",
+                "192.168.11.254/24"
+            ],
+            "sync_fmc_object": true,
+            "vrf_name": "first_app_vrf"
+        }
+    },
+    "cdp": {
+        "first_app_cdp_disable": {
+            "admin_st": "disabled",
+            "name": "first_app_cdp_disable"
+        },
+        "first_app_cdp_enable": {
+            "admin_st": "enabled",
+            "name": "first_app_cdp_enable"
+        }
+    },
+    "contracts": {
+        "Con_app_epg_to_database_epg": {
+            "anp_epg_consumer": {
+                "anp_name": "first_app_ap",
+                "epg_name": "app_epg"
+            },
+            "anp_epg_provider": {
+                "anp_name": "first_app_ap",
+                "epg_name": "database_epg"
+            },
+            "contract_name": "Con_app_epg_to_database_epg",
+            "directives": [
+                "none"
+            ],
+            "display_name": "Con_app_epg_to_database_epg",
+            "filter_list": [
+                "tcp_3306"
+            ],
+            "filter_type": "bothWay",
+            "scope": "tenant"
+        },
+        "Con_web_epg_to_app_epg": {
+            "anp_epg_consumer": {
+                "anp_name": "first_app_ap",
+                "epg_name": "app_epg"
+            },
+            "anp_epg_provider": {
+                "anp_name": "first_app_ap",
+                "epg_name": "web_epg"
+            },
+            "contract_name": "Con_web_epg_to_app_epg",
+            "directives": [
+                "none"
+            ],
+            "display_name": "Con_web_epg_to_app_epg",
+            "filter_list": [
+                "tcp_22",
+                "icmp"
+            ],
+            "filter_type": "bothWay",
+            "scope": "tenant"
+        }
+    },
+    "epgs": {
+        "app_epg": {
+            "anp_name": "first_app_ap",
+            "bd_name": "app_bd",
+            "display_name": "app_epg",
+            "domains": [
+                {
+                    "name": "first_app_vswitch",
+                    "type": "vmm_vmware"
+                },
+                {
+                    "name": "first_app_bare_metal_phydomain",
+                    "type": "phydomain"
+                }
+            ],
+            "name": "app_epg"
+        },
+        "database_epg": {
+            "anp_name": "first_app_ap",
+            "bd_name": "database_bd",
+            "display_name": "database_epg",
+            "domains": [
+                {
+                    "name": "first_app_vswitch",
+                    "type": "vmm_vmware"
+                }
+            ],
+            "name": "database_epg"
+        },
+        "web_epg": {
+            "anp_name": "first_app_ap",
+            "bd_name": "web_bd",
+            "display_name": "web_epg",
+            "domains": [
+                {
+                    "name": "first_app_vswitch",
+                    "type": "vmm_vmware"
+                }
+            ],
+            "name": "web_epg"
+        }
+    },
     "ext_epg": {},
-    "filters": {},
-    "fmc_user": {},
+    "filters": {
+        "filter_all": {
+            "destination_from": "unspecified",
+            "destination_to": "unspecified",
+            "display_name": "filter_all_display_name",
+            "entry_display_name": "filter_all_entry_display_name",
+            "entry_name": "filter_all_entry_name",
+            "ether_type": "unspecified",
+            "ip_protocol": "unspecified",
+            "name": "filter_all",
+            "stateful": "no"
+        },
+        "icmp": {
+            "ether_type": "ip",
+            "ip_protocol": "icmp",
+            "name": "icmp",
+            "stateful": "no"
+        },
+        "tcp_22": {
+            "destination_from": "ssh",
+            "destination_to": "ssh",
+            "ether_type": "ip",
+            "ip_protocol": "tcp",
+            "name": "tcp_22",
+            "stateful": "yes"
+        },
+        "tcp_3306": {
+            "destination_from": "3306",
+            "destination_to": "3306",
+            "ether_type": "ip",
+            "ip_protocol": "tcp",
+            "name": "tcp_3306",
+            "stateful": "yes"
+        },
+        "tcp_40000": {
+            "destination_from": "40000",
+            "destination_to": "40000",
+            "ether_type": "ip",
+            "ip_protocol": "tcp",
+            "name": "tcp_40000",
+            "stateful": "yes"
+        },
+        "web": {
+            "destination_from": "80",
+            "destination_to": "80",
+            "ether_type": "ip",
+            "ip_protocol": "tcp",
+            "name": "web",
+            "stateful": "yes"
+        }
+    },
+    "fmc_user": {
+        "password": "C!sc0123",
+        "url": "10.74.202.152",
+        "username": "devadmin"
+    },
     "l3domain": {},
     "l3outs": {},
     "lacp": {
@@ -59,7 +257,22 @@
             "name": "first_app_lldp_enable"
         }
     },
-    "pbr": {},
+    "pbr": {
+        "pbr-two-arm-fpr-inside": {
+            "ip": "10.10.10.254",
+            "ipsla_name": "insdie_ipsla_icmp",
+            "mac": "00:50:56:9a:99:23",
+            "name": "pbr-two-arm-fpr-inside",
+            "rh_grp_name": "inside_rh_grp"
+        },
+        "pbr-two-arm-fpr-outside": {
+            "ip": "20.20.20.254",
+            "ipsla_name": "outside_ipsla_icmp",
+            "mac": "00:50:56:9a:00:e4",
+            "name": "pbr-two-arm-fpr-outside",
+            "rh_grp_name": "outside_rh_grp"
+        }
+    },
     "phydomain": {
         "fpr_two_arm_fw_phydomain": {
             "aaep_name": "aaep_first_app_fpr_phydomain",
@@ -67,8 +280,48 @@
             "vlan_pool": "first_app_fpr_phy_vlan_pool"
         }
     },
-    "sg": {},
-    "tenant": {},
+    "sg": {
+        "two-arm-fpr": {
+            "contract_name": "Con_app_epg_to_database_epg",
+            "description": "two-arm-fpr",
+            "devtype": "PHYSICAL",
+            "inside_bd_name": "fpr_inside_bd",
+            "inside_card": "1",
+            "inside_leaf_block": "101",
+            "inside_pbr_name": "pbr-two-arm-fpr-inside",
+            "inside_port": "19",
+            "inside_vlan": "vlan-2201",
+            "name": "two-arm-fpr",
+            "outside_bd_name": "fpr_outside_bd",
+            "outside_card": "1",
+            "outside_leaf_block": "101",
+            "outside_pbr_name": "pbr-two-arm-fpr-outside",
+            "outside_port": "19",
+            "outside_vlan": "vlan-2202",
+            "phydomain_name": "fpr_two_arm_fw_phydomain",
+            "service_node_type": "firewall",
+            "site_nodes": [
+                {
+                    "node_name": "two-arm-fw",
+                    "site_name": "aci_site1",
+                    "tenant_name": "two_tiers_Company_Tenant"
+                }
+            ]
+        }
+    },
+    "static_vlan_epgs": {
+        "app_epg": {
+            "encap": "vlan-2930",
+            "eth_name": "eth1/12",
+            "mode": "regular",
+            "node_id": "101",
+            "pod_id": "1"
+        }
+    },
+    "tenant": {
+        "description": "Tenant Created by Terraform",
+        "name": "first_app_tn"
+    },
     "vcenter_user": {
         "password": "C1sc0123",
         "url": "10.74.202.163",
@@ -94,7 +347,73 @@
             "to": "vlan-2800"
         }
     },
-    "vmm_vmware": {},
-    "vpc": {},
-    "vrfs": {}
+    "vmm_vmware": {
+        "first_app_vswitch": {
+            "aaep_name": "aaep_first_app_vswitch_vmm_vcenter",
+            "dvs_version": "6.6",
+            "esxi_hosts": [
+                "10.74.202.50",
+                "10.74.202.51",
+                "10.74.202.52"
+            ],
+            "name": "first_app_vswitch",
+            "provider_profile_dn": "uni/vmmp-VMware",
+            "uplinks": [
+                "vmnic5"
+            ],
+            "vcenter_datacenter_name": "HX-DC",
+            "vcenter_host_or_ip": "10.74.202.163",
+            "vlan_pool": "first_app_vlan_pool_1"
+        }
+    },
+    "vpc": {
+        "leaf_access_port_105_106_1_25_vpc_vmm_vcenter": {
+            "aaep_name": "aaep_first_app_vswitch_vmm_vcenter",
+            "cdp_status": "first_app_cdp_disable",
+            "lag_t": "node",
+            "leaf_block": [
+                105,
+                106
+            ],
+            "leaf_profile": "leaf_105_106_profile_e1_25_vpc_vmm_vcenter",
+            "lldp_status": "first_app_lldp_enable",
+            "name": "leaf_access_port_105_106_1_25_vpc_vmm_vcenter",
+            "port_channel_status": "first_app_lacp_active",
+            "ports": [
+                {
+                    "from_card": "1",
+                    "from_port": "25",
+                    "to_card": "1",
+                    "to_port": "25"
+                }
+            ]
+        },
+        "leaf_access_port_105_106_1_26_vpc_vmm_vcenter": {
+            "aaep_name": "aaep_first_app_vswitch_vmm_vcenter",
+            "cdp_status": "first_app_cdp_disable",
+            "lag_t": "node",
+            "leaf_block": [
+                105,
+                106
+            ],
+            "leaf_profile": "leaf_105_106_profile_e1_26_vpc_vmm_vcenter",
+            "lldp_status": "first_app_lldp_enable",
+            "name": "leaf_access_port_105_106_1_26_vpc_vmm_vcenter",
+            "port_channel_status": "first_app_lacp_active",
+            "ports": [
+                {
+                    "from_card": "1",
+                    "from_port": "26",
+                    "to_card": "1",
+                    "to_port": "26"
+                }
+            ]
+        }
+    },
+    "vrfs": {
+        "first_app_vrf": {
+            "display_name": "first_app_vrf",
+            "name": "first_app_vrf"
+        }
+    }
 }
